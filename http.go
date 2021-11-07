@@ -63,7 +63,7 @@ func getLatestBlock() Block {
 			break
 		}
 		log.Println("DEBUG:latest block body:", block, " address:", peer, " byte slice:", []byte(block))
-		b, err := JSONtoBlock([]byte(block))
+		b, err := JSONtoBlock(bytes.Trim([]byte(block), "\x00"))
 		if err != nil {
 			log.Println("Could not get latest block:", err)
 		} else {
