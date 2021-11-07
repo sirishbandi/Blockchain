@@ -6,8 +6,11 @@ import (
 )
 
 func (peerList *PeerList) updatePeers() {
-	tempList := []string{}
-	copy(tempList, peerList.list)
+	tempList := make([]string,len(peerList.list))
+	n := copy(tempList, peerList.list)
+	if n==0 {
+		log.Println("BAD, we have no peers")
+	}
 	log.Println("Updating peerList, current list:", tempList)
 	list := getPeers(tempList)
 	peerList.lock.Lock()
