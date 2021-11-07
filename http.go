@@ -22,44 +22,34 @@ func httpGet(adress string, path string) (string, error) {
 }
 
 func getPeers(peerList []string) []string {
+	newList := []string{}
 	for i, peer := range peerList {
 		for retry := RETRY_COUNT; retry > 0; retry-- {
 			listString, err := httpGet(peer, "peerlist")
 			if err != nil {
 				log.Println("Failed to get peerlist from ", peer, ".Retry=", retry)
 				time.Sleep(5 * time.Second)
-				// Counld not get a list of peers, exit.
-				if retry == 1 {
-					log.Println("Could not get peerlist from ", peer, ". Deleting peer.")
-					if i+1 >= len(peerList) {
-						peerList = peerList[:i]
-					}else{
-						peerList = append(peerList[:i], peerList[i+1:]...)
-					}
-				}
 				continue
 			}
-
 			
-
 			// Add new peers to the list
 			list := strings.Split(listString, "\n")
 			for _, newpeer := range list {
 				new := true
-				for _, peer := range peerList {
+				for _, peer := range newList {
 					if peer == newpeer {
 						new = false
 						break
 					}
 				}
 				if new {
-					peerList = append(peerList, newpeer)
+					newList = append(newList, newpeer)
 				}
 			}
 			break
 		}
 	}
-	return peerList
+	return newList
 }
 
 func getLatestBlock() Block {
