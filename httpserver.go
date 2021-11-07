@@ -22,7 +22,8 @@ func peerListFunc(w http.ResponseWriter, req *http.Request) {
 	peerList.list = append(peerList.list, ip)
 	peerList.lock.Unlock()
 	for _, peer := range peerList.list {
-		fmt.Fprint(w, peer)
+		// We use newline as delimiter
+		fmt.Fprintln(w, peer)
 	}
 }
 
