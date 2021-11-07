@@ -114,7 +114,7 @@ func bootstrap() {
 }
 
 func main() {
-	fmt.Println("Starting Blockchain node:")
+	log.Println("Starting Blockchain node:")
 	bootstrap()
 	log.Println("Bootstap Complete. setting up hasher and HTTP server")
 	dataQ = make(chan string, MAX_BACKLOG)
@@ -122,6 +122,7 @@ func main() {
 	go peerList.cronUpdatePeer()
 	go blockState.blockOperations()
 	httpsertup()
+	log.Println("Starting HHTP Server...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatalln("Could not start HTTP server,", err)
 	}
