@@ -51,6 +51,7 @@ func getPeers(peerList []string) []string {
 					peerList = append(peerList, newpeer)
 				}
 			}
+			break
 		}
 	}
 	return peerList
