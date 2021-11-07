@@ -22,7 +22,7 @@ func httpGet(adress string, path string) (string, error) {
 }
 
 func getPeers(peerList []string) []string {
-	newList := []string{}
+	newList := []string{config.address}
 	for _, peer := range peerList {
 		for retry := RETRY_COUNT; retry > 0; retry-- {
 			listString, err := httpGet(peer, "peerlist")
