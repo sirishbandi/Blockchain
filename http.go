@@ -28,14 +28,15 @@ func getPeers(peerList []string) []string {
 			if err != nil {
 				log.Println("Failed to get peerlist from ", peer, ".Retry=", retry)
 				time.Sleep(5 * time.Second)
+				// Counld not get a list of peers, exit.
+				if retry == 1 {
+					log.Println("Could not get peerlist from ", peer, ". Deleting peer.")
+					peerList = append(peerList[:i], peerList[i+1:]...)
+				}
 				continue
 			}
 
-			// Counld not get a list of peers, exit.
-			if retry == 1 {
-				log.Println("Could not get peerlist from ", peer, ". Deleting peer.")
-				peerList = append(peerList[:i], peerList[i+1:]...)
-			}
+			
 
 			// Add new peers to the list
 			list := strings.Split(listString, "\n")
