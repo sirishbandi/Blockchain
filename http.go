@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strings"
 	"time"
+	"io/ioutil"
 )
 
 func httpGet(address string, path string) (string, error) {
@@ -17,7 +18,7 @@ func httpGet(address string, path string) (string, error) {
 	defer resp.Body.Close()
 	log.Println("DEBUG:Status code:", resp.StatusCode, " path:", path, " address:", address)
 	body := []byte{}
-	if _, err = resp.Body.Read(body); err != nil {
+	if body, err = ioutil.ReadAll(resp.Body); err != nil {
 		return "", err
 	}
 	return string(body), nil
