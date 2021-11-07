@@ -81,7 +81,7 @@ func getBlock(hash string) Block {
 			break
 		}
 
-		b, err := JSONtoBlock([]byte(block))
+		b, err := JSONtoBlock(bytes.Trim([]byte(block), "\x00"))
 		if err != nil {
 			fmt.Println("Could not get block:", hash, " from ", peer, err)
 		}
