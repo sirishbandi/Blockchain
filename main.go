@@ -99,7 +99,7 @@ func bootstrap() {
 	readFlags()
 	peerList.list = []string{config.address}
 	// Get the list of Peers from my negibour
-	peerList.updatePeers()
+	// peerList.updatePeers() if run it would remove self from list as server is not yet running
 	log.Println("Got the following peers from seed:", peerList.list)
 
 	//Create the 1st block or read blocks from peer to be upto date
