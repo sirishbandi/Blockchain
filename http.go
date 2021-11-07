@@ -16,7 +16,7 @@ func httpGet(address string, path string) (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
-	log.Println("DEBUG:Status code:", resp.StatusCode, " path:", path, " address:", address)
+	//log.Println("DEBUG:Status code:", resp.StatusCode, " path:", path, " address:", address)
 	body := []byte{}
 	if body, err = ioutil.ReadAll(resp.Body); err != nil {
 		return "", err
@@ -62,7 +62,7 @@ func getLatestBlock() Block {
 			log.Println("Failed to get peerlist from ", peer)
 			break
 		}
-		log.Println("DEBUG:latest block body:", block, " address:", peer, " byte slice:", []byte(block))
+		//log.Println("DEBUG:latest block body:", block, " address:", peer, " byte slice:", []byte(block))
 		b, err := JSONtoBlock(bytes.Trim([]byte(block), "\x00"))
 		if err != nil {
 			log.Println("Could not get latest block:", err)
