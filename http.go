@@ -9,11 +9,13 @@ import (
 	"time"
 )
 
-func httpGet(adress string, path string) (string, error) {
-	resp, err := http.Get("http://" + adress + "/" + path)
+func httpGet(address string, path string) (string, error) {
+	resp, err := http.Get("http://" + address + "/" + path)
 	if err != nil {
 		return "", err
 	}
+	defer resp.Body.Close()
+	log.Println("DEBUG:Status code:", resp.StatusCode, " path:", path, " address:", address)
 	body := []byte{}
 	if _, err = resp.Body.Read(body); err != nil {
 		return "", err
