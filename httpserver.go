@@ -22,7 +22,7 @@ func peerListFunc(w http.ResponseWriter, req *http.Request) {
 	peerList.list = append(peerList.list, ip)
 	peerList.lock.Unlock()
 	for _, peer := range peerList.list {
-		fmt.Fprintln(w, peer)
+		fmt.Fprint(w, peer)
 	}
 }
 
@@ -40,7 +40,7 @@ func getBlockFunc(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(w, "Could not read file,", err)
 		return
 	}
-	fmt.Fprintln(w, string(data))
+	fmt.Fprint(w, string(data))
 }
 
 func addBlockFunc(w http.ResponseWriter, req *http.Request) {
