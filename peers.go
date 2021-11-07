@@ -1,6 +1,9 @@
 package main
 
-import "time"
+import (
+	"time"
+	"log"
+)
 
 func (peerList *PeerList) updatePeers() {
 	tempList := []string{}
