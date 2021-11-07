@@ -59,7 +59,7 @@ func getLatestBlock() Block {
 			log.Println("Failed to get peerlist from ", peer)
 			break
 		}
-		//log.Println("DEBUG:latest block body:", block)
+		log.Println("DEBUG:latest block body:", block)
 		b, err := JSONtoBlock([]byte(block))
 		if err != nil {
 			fmt.Println("Could not get latest block:", err)
