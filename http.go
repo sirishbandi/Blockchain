@@ -32,7 +32,7 @@ func getPeers(peerList []string) []string {
 			}
 
 			// Counld not get a list of peers, exit.
-			if retry == 0 {
+			if retry == 1 {
 				log.Println("Could not get peerlist from ", peer, ". Deleting peer.")
 				peerList = append(peerList[:i], peerList[i+1:]...)
 			}
