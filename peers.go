@@ -10,7 +10,7 @@ func (peerList *PeerList) updatePeers() {
 	// Deep copy below, not using copy() to remove newline
 	tempList[0] = peerList.list[0]
 	for i:=1; i<len(peerList.list); i++ {
-		if peerList.list[i] == "" {break }
+		if peerList.list[i] == "" {continue }
 		tempList = append(tempList,peerList.list[i])
 	}
 	log.Println("Updating peerList, current list:", tempList)
