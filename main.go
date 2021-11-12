@@ -120,7 +120,10 @@ func main() {
 	log.Println("Bootstap Complete. setting up hasher and HTTP server")
 	dataQ = make(chan string, MAX_BACKLOG)
 	syncQ = make(chan Block, MAX_BACKLOG)
-	go peerList.cronUpdatePeer()
+	go func() {
+		time.Sleep(5 * time.Second) //Wait 5sec to ensure HTTP server starts.
+		peerList.cronUpdatePeer()
+	}()
 	go blockState.blockOperations()
 	httpsertup()
 	log.Println("Starting HHTP Server...")
