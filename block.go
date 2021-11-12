@@ -178,7 +178,7 @@ func (blockState *BlockState) syncBlocks(b Block) error {
 		if err != nil {
 			return err
 		}
-		err = writeFile(hash, data)
+		err = writeFile(blockHash, data)
 		if err != nil {
 			return err
 		}
