@@ -18,13 +18,16 @@ func httpsertup() {
 func peerListFunc(w http.ResponseWriter, req *http.Request) {
 	t := strings.Split(req.RemoteAddr, ":")
 	ip := t[0] + ":8080"
-	peerList.lock.Lock()
-	peerList.list = append(peerList.list, ip)
-	peerList.lock.Unlock()
+	
 	for _, peer := range peerList.list {
 		// We use newline as delimiter
 		fmt.Fprintln(w, peer)
 	}
+	
+	peerList.lock.Lock()
+	peerList.list = append(peerList.list, ip)
+	peerList.lock.Unlock()
+	peerList.updatePeers()
 }
 
 func getBlockFunc(w http.ResponseWriter, req *http.Request) {
