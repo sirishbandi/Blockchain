@@ -11,7 +11,7 @@ func (peerList *PeerList) updatePeers() {
 	tempList[0] = peerList.list[0]
 	for i:=1; i<len(peerList.list); i++ {
 		if peerList.list[i] == "" {break }
-		tempList[i] = peerList.list[i]
+		tempList = append(tempList,peerList.list[i])
 	}
 	log.Println("Updating peerList, current list:", tempList)
 	list := getPeers(tempList)
