@@ -7,9 +7,11 @@ import (
 
 func (peerList *PeerList) updatePeers() {
 	tempList := make([]string,len(peerList.list))
-	n := copy(tempList, peerList.list)
-	if n==0 {
-		log.Println("BAD, we have no peers")
+	// Deep copy below, not using copy() to remove newline
+	tempList[0] = peerList.list[0]
+	for i:=1; i<len(peerList.list); i++ {
+		if peerList.list[i] == "" {break }
+		tempList[i] = peerList.list[i]
 	}
 	log.Println("Updating peerList, current list:", tempList)
 	list := getPeers(tempList)
