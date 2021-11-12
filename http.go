@@ -25,7 +25,7 @@ func httpGet(address string, path string) (string, error) {
 }
 
 func getPeers(peerList []string) []string {
-	newList := []string{config.address}
+	newList := []string{config.myaddress}
 	for _, peer := range peerList {
 		for retry := RETRY_COUNT; retry > 0; retry-- {
 			listString, err := httpGet(peer, "peerlist")

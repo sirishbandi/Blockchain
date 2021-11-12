@@ -19,9 +19,10 @@ const (
 )
 
 type Config struct {
-	user    string
-	address string
-	init    bool
+	user      string
+	address   string
+	myaddress string
+	init      bool
 }
 
 var config Config

@@ -10,6 +10,7 @@ import (
 func readFlags() {
 	flag.StringVar(&config.user, "user", "aaaaaaaaaa", "My public user key.")
 	flag.StringVar(&config.address, "address", "127.0.0.1:8080", "The address of a peer.")
+	flag.StringVar(&config.myaddress, "myaddress", "127.0.0.1:8080", "Myaddress")
 	flag.BoolVar(&config.init, "init", false, "Create a new chain if true")
 	flag.Parse()
 }
