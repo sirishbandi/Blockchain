@@ -78,7 +78,8 @@ func createInitBlock() {
 	// Also create a block with hash for reading.
 	err = writeFile(hash, data)
 	if err != nil {
-		log.Fatal(err)
+		//log.Fatal(err)
+		log.Println("Hash did not match, but continuing hoping it was 1st block")
 	}
 }
 
