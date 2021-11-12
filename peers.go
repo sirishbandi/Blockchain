@@ -6,7 +6,7 @@ import (
 )
 
 func (peerList *PeerList) updatePeers() {
-	tempList := make([]string,len(peerList.list))
+	tempList := make([]string,1)
 	// Deep copy below, not using copy() to remove newline
 	tempList[0] = peerList.list[0]
 	for i:=1; i<len(peerList.list); i++ {
