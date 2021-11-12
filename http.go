@@ -29,7 +29,7 @@ func getPeers(peerList []string) []string {
 		listString, err := httpGet(peer, "peerlist")
 		if err != nil {
 			log.Println("Failed to get peerlist from ", peer)
-			break
+			continue
 		}
 		// Add new peers to the list
 		list := strings.Split(listString, "\n")
