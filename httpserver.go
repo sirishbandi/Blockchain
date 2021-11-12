@@ -19,19 +19,16 @@ func peerListFunc(w http.ResponseWriter, req *http.Request) {
 	t := strings.Split(req.RemoteAddr, ":")
 	ip := t[0] + ":8080"
 	
+	new := true
 	for _, peer := range peerList.list {
+		if peer == ip{
+			new = false
+		}
 		// We use newline as delimiter
 		fmt.Fprintln(w, peer)
 	}
-	
-	new := true
-	for _, peer := range peerList.list {
-		if peer == ip || peer == ""{
-			new = false
-			break
-		}
-	}
 	if new {
+		log.Println("Got new Peer for /peerlist,", ip)
 		peerList.lock.Lock()
 		peerList.list = append(peerList.list, ip)
 		peerList.lock.Unlock()
