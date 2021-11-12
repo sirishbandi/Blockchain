@@ -24,10 +24,18 @@ func peerListFunc(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintln(w, peer)
 	}
 	
-	peerList.lock.Lock()
-	peerList.list = append(peerList.list, ip)
-	peerList.lock.Unlock()
-	peerList.updatePeers()
+	new := true
+	for _, peer := range peerList.list {
+		if peer == ip || peer == ""{
+			new = false
+			break
+		}
+	}
+	if new {
+		peerList.lock.Lock()
+		peerList.list = append(peerList.list, ip)
+		peerList.lock.Unlock()
+	}
 }
 
 func getBlockFunc(w http.ResponseWriter, req *http.Request) {
