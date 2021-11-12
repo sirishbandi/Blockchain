@@ -23,7 +23,7 @@ func (peerList *PeerList) updatePeers() {
 
 func (PeerList *PeerList) cronUpdatePeer() {
 	for {
-		time.Sleep(PEER_SYNC_TIME)
 		peerList.updatePeers()
+		time.Sleep(PEER_SYNC_TIME)
 	}
 }
