@@ -21,7 +21,8 @@ func peerListFunc(w http.ResponseWriter, req *http.Request) {
 	
 	new := true
 	for _, peer := range peerList.list {
-		if peer == ip{
+		if peer == ip {
+			log.Println("DEBUG: peer exists, not adding again /peerlist,", ip)
 			new = false
 		}
 		// We use newline as delimiter
