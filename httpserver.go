@@ -106,5 +106,6 @@ func recieveBlockFunc(w http.ResponseWriter, req *http.Request) {
 
 	// If the revieved new block is newer than the current block we will need to sync all missing blocks.
 	// Need to run only one sync block at a time.
+	log.Println("Recieved block:", b, " adding it to the Q.")
 	syncQ <- b
 }
