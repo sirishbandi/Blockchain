@@ -20,5 +20,4 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o blockchain *.go
 FROM gcr.io/distroless/static:nonroot
 WORKDIR /app
 COPY --from=builder /workspace/blockchain .
-RUN echo 'export CONTAINER_IP="$(hostname -i)"' >> ~/.bashrc
 USER 65532:65532
