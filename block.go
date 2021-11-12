@@ -108,7 +108,9 @@ func (blockState *BlockState) blockOperations() {
 				continue
 			}
 			// Stop the ongoing hash
-			cancelFunc()
+			if cancelFunc != nil {
+				cancelFunc()
+			}
 			// Get up to date on the blocks
 			err := blockState.syncBlocks(b)
 			if err != nil {
