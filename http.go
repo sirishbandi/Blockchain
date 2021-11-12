@@ -36,7 +36,7 @@ func getPeers(peerList []string) []string {
 		for _, newpeer := range list {
 			new := true
 			for _, peer := range newList {
-				if peer == newpeer || peer != ""{
+				if peer == newpeer || peer == ""{
 					new = false
 					break
 				}
