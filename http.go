@@ -36,12 +36,14 @@ func getPeers(peerList []string) []string {
 		for _, newpeer := range list {
 			new := true
 			for _, peer := range newList {
-				if peer == newpeer || peer == ""{
+				if peer == newpeer {
+					log.Println("DEBUG: NOT adding peer,", newpeer)
 					new = false
 					break
 				}
 			}
 			if new {
+				log.Println("DEBUG: addiding peer,", newpeer)
 				newList = append(newList, newpeer)
 			}
 		}
