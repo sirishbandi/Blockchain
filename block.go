@@ -173,7 +173,7 @@ func (blockState *BlockState) syncBlocks(b Block) error {
 
 	// Get all other blocks
 	for blockHash := b.PrevBlockHash; blockHash != FIRST_BLOCK; {
-		b := getBlock(hash)
+		b := getBlock(blockHash)
 		data, err := b.blockToJSON()
 		if err != nil {
 			return err
