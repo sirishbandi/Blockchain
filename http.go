@@ -101,14 +101,14 @@ func advertiseBlock(b Block) {
 		req, err := http.NewRequest("GET", "http://"+peer+"/recieveblock", bytes.NewReader(data))
 		if err != nil {
 			log.Println("Could not advertise block to", peer, err)
-			return
+			continue
 		}
 
 		client := &http.Client{}
 		resp, err := client.Do(req)
 		if err != nil {
 			log.Println("Could not advertise block to", peer, err)
-			return
+			continue
 		}
 		log.Println("Sent new block to", peer, resp.Status)
 	}
