@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"time"
 	"io/ioutil"
 )
 
@@ -29,7 +28,7 @@ func getPeers(peerList []string) []string {
 	for _, peer := range peerList {
 		listString, err := httpGet(peer, "peerlist")
 		if err != nil {
-			log.Println("Failed to get peerlist from ", peer, ".Retry=", retry)
+			log.Println("Failed to get peerlist from ", peer)
 			break
 		}
 		// Add new peers to the list
