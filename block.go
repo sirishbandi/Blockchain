@@ -117,6 +117,7 @@ func (blockState *BlockState) blockOperations() {
 			if err != nil {
 				log.Println("Error syncing chain:", err)
 			}
+			log.Println("Finished sync of block,", b)
 		default: continue
 		}
 	}
