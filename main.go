@@ -28,6 +28,7 @@ func readFile(file string) ([]byte, error) {
 }
 
 func writeFile(file string, data []byte) error {
+	log.Println("Writing file ", file, " data:", string(data))
 	f, err := os.Create("blocks/" + file + ".json")
 	if err != nil {
 		return err
