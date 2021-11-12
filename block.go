@@ -103,6 +103,7 @@ func (blockState *BlockState) blockOperations() {
 			}()
 
 		case b := <-syncQ:
+			log.Println("Starting sync of block:", b)
 			if blockState.currBlockID >= b.BlockID {
 				log.Println("synch failed: Block trying to be synced is too old")
 				continue
@@ -116,6 +117,7 @@ func (blockState *BlockState) blockOperations() {
 			if err != nil {
 				log.Println("Error syncing chain:", err)
 			}
+		default: continue
 		}
 	}
 }
